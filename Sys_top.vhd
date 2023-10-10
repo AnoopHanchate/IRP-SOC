@@ -95,7 +95,7 @@ architecture Sys_top_a of Sys_top is
 	   PSEL              : in std_logic ;
 	   PENABLE           : in std_logic ; 
 	   PWrite            : in std_logic ; 
-	   PADDR             : in std_logic_vector(3 downto 0) ; 
+	   PADDR             : in std_logic_vector(7 downto 0) ; 
 	   PWDATA            : in std_logic_vector(7 downto 0) ;
 
 	   PRDATA            : out std_logic_vector(7 downto 0);     
@@ -278,7 +278,7 @@ architecture Sys_top_a of Sys_top is
       PCLK                 => clk_p,             
       PRESETn              => reset,                            
       PSEL                 => gpio_cs1,                            
-      PADDR                => addrb(3 downto 0),          
+      PADDR                => addrb(7 downto 0),          
       PWrite               => web_rw,                                   
       PWDATA               => dinb(7 downto 0),
       PRDATA               => gpio_dout(7 downto 0), 
