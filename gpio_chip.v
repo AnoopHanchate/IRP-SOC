@@ -24,7 +24,7 @@ module gpio_chip(
 input wire PCLK,
 input wire PRESETn,
 input wire PWrite,
-input wire [3:0] PADDR,
+input wire [7:0] PADDR,
 input wire [7:0] PWDATA,
 input wire PSEL,
 input wire PENABLE,
@@ -73,25 +73,25 @@ SETUP:begin
       next <=IDLE;
     	
 		
-	if (PADDR[3:0] == 4'h0 && PWrite == 1) begin //data write
+	if (PADDR[7:0] == 8'h00 && PWrite == 1) begin //data write
 			 psl <=PWDATA[7:0];
      
 		    end	
 	 
-	 if (PADDR[3:0] == 4'h4 && PWrite == 1) begin //data write
+	if (PADDR[7:0] == 8'h04 && PWrite == 1) begin //data write
 
 			 dir <=PWDATA[7:0];
      
 		    end	
-		    if (PADDR[3:0] == 4'h8 && PWrite == 1) begin //data write
+	if (PADDR[7:0] == 8'h08 && PWrite == 1) begin //data write
 	         set <=PWDATA[7:0];
      
 		    end	
-		    if (PADDR[3:0] == 4'hC && PWrite == 1) begin //data write
+	if (PADDR[7:0] == 8'h0C && PWrite == 1) begin //data write
 	    	 clr <=PWDATA[7:0];
      
 		    end	
-	else if(PADDR[3:0] == 4'h0 && PWrite == 0)begin	//data read                    
+	if(PADDR[7:0] == 8'h10 && PWrite == 0)begin	//data read                    
 	       PRDATA[7:0] <= in;
           end 
 	
